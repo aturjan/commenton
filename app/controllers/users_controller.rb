@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    puts params
+    
  	if params[:commit] == "Log in"
      user = User.find_by(email: params[:users][:email].downcase)
     if user && user.authenticate(params[:users][:password])
@@ -13,8 +13,9 @@ class UsersController < ApplicationController
       log_in user
       redirect_to user
     else
-        flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      #render 'new'
+      flash.now[:danger] = 'Invalid email/password combination'
+      redirect_to root_url
     end
   else  
     @user = User.new
