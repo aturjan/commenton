@@ -1,0 +1,46 @@
+
+<% provide(:title, @subject.first_name + @subject.last_name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h2>
+         <%= @subject.first_name %>
+         <%= @subject.last_name %>
+      </h2>
+      <div class="bottom-three">
+        <p>External link:</p>
+        <div class="well well-sm">
+        <%= @subject.external_link %>
+      </div>
+    </section>
+
+    <section class="micropost_form">
+        <%= render 'shared/people_comment_form' %>
+      </section>
+
+  </aside>
+
+
+
+
+<div class="col-md-8">
+<style>
+  .bottom-three {
+     margin-top: 0.9cm;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-8">
+    <% if @subject.people_comments.any? %>
+      <h3>Comments (<%= @subject.people_comments.count %>)</h3>
+      <ol class="microposts">
+        <%= render @people_comments %>
+      </ol>
+      <%= will_paginate @people_comments %>
+    <% end %>
+  </div>
+</div>
+
+</div>
+

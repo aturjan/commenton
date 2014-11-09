@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
     has_secure_password
     validates :password, length: { minimum: 6 }
+    
+    has_many :people_subjects, dependent: :destroy
+    has_many :people_comments
 
 # Returns the hash digest of the given string.
   def User.digest(string)

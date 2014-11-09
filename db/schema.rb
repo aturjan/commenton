@@ -11,7 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027145218) do
+ActiveRecord::Schema.define(version: 20141108134914) do
+
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.integer  "people_subject_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "comments", ["people_subject_id"], name: "index_comments_on_people_subject_id"
+
+  create_table "people_comments", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "people_subject_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "people_comments", ["people_subject_id", "created_at"], name: "index_people_comments_on_people_subject_id_and_created_at"
+  add_index "people_comments", ["people_subject_id"], name: "index_people_comments_on_people_subject_id"
+  add_index "people_comments", ["user_id", "created_at"], name: "index_people_comments_on_user_id_and_created_at"
+  add_index "people_comments", ["user_id"], name: "index_people_comments_on_user_id"
+
+  create_table "people_subjects", force: true do |t|
+    t.text     "first_name"
+    t.text     "last_name"
+    t.text     "external_link"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "people_subjects", ["user_id", "created_at"], name: "index_people_subjects_on_user_id_and_created_at"
+  add_index "people_subjects", ["user_id"], name: "index_people_subjects_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

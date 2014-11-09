@@ -1,13 +1,13 @@
 <form class="navbar-form navbar-right">
 <%= form_for(:users, url: login_path) do |f| %>
 
-      <%= f.label :email, class:"control-label", for:"inputSmall"  %>
-      <%= f.text_field :email, class: "form-control input-sm"%>
+      <%= f.label :"", class:"control-label", for:"inputSmall"  %>
+      <%= f.text_field :email, placeholder:"Email", class: "form-control input-sm"%>
 
-      <%= f.label :password, class:"control-label", for:"inputSmall" %>
-      <%= f.password_field :password, class: "form-control input-sm"%> 
+      <%= f.label :"", class:"control-label", for:"inputSmall" %>
+      <%= f.password_field :password, placeholder:"Password", class: "form-control input-sm"%> 
 
       <%= f.submit "Log in", class: "btn btn-primary" %>
 <% end %>
 
-    </form>	
+    </form>
