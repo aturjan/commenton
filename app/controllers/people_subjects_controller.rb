@@ -25,8 +25,12 @@ class PeopleSubjectsController < ApplicationController
     else
      render 'new'
     end
-end
+  end
 
+  def search
+    keywords = params[:k].split(' ')
+    @subject = PeopleSubject.for_keywords(keywords)
+  end
 
 private
 
