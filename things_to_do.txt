@@ -1,0 +1,24 @@
+Cupertino:
+
+ - Work on the subject creation.
+ 	- When creating a subject the user is presented with a list of possible matches to which he has to verify if
+   any of the matches is the actual user is trying to comment on.
+   User searching should be dynamic without the refresh of the webpage.
+    - Validate the link to guarantee that the link is authentic and not from an existing user.
+
+ - Add devise as the user authentication mechanism.
+
+ - Enhance the creation of new users with linkedIn, Facebook and verify its validity.
+
+ - Thums up and down on comments.
+
+ - Think how to make anonymous or non anonymous comments.
+     - Through uer profile,
+     - or through boolean flag on comment.
+
+ - Create replies on comments.
+
+ - How to generalize the site to a more broder review scheme.
+     - I.e. allow the quick introducion of newer types of forms for commenting on things.
+
+ - 
