@@ -8,6 +8,7 @@ class PeopleSubjectsController < ApplicationController
     @comment = PeopleComment.new(content: "", people_subject_id: @subject_id)
 
   	@people_comments = @subject.people_comments.paginate(page: params[:page])
+    user_is_false
     	
   end
 
@@ -17,7 +18,7 @@ class PeopleSubjectsController < ApplicationController
   
   def create
   	 @subject = PeopleSubject.new(subject_params)
-     
+     @subject.user_id = current_user.id   
     if @subject.save
      # flash[:success] = "Welcome to the CommentOn!"
      redirect_to @subject 

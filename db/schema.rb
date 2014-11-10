@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141108134914) do
 
-  create_table "comments", force: true do |t|
-    t.text     "content"
-    t.integer  "people_subject_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "comments", ["people_subject_id"], name: "index_comments_on_people_subject_id"
-
   create_table "people_comments", force: true do |t|
     t.text     "content"
     t.integer  "user_id"

@@ -2,6 +2,9 @@ class UsersController < ApplicationController
  
   def show
   	@user = User.find(params[:id]) 
+    @people_subjects = @user.people_subjects.paginate(page: params[:page])
+    @people_comments =@user.people_comments.paginate(page: params[:page])
+    user_is_true
   end
 
   def new

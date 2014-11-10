@@ -7,40 +7,85 @@
         <%= @user.name %>
       </h2>
 
+  <style>
+    .bottom-three {
+       margin-top: 0.9cm;
+    }
+  </style>
+
+  <div class="btn-group bottom-three">
+      <!-- p>Create new subjects you would like to comment on:</p -->
+    <div class="well well-sm">
+        Create new subjects you would like to comment on:
+    </div>
+      <a href="#" class="btn btn-primary">New Subject</a>
+      <a aria-expanded="false" href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="../people_subjects/new">People</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">Company</a></li>
+      </ul>
+    </div>
+
+  <div class="btn-group bottom-three">
+    <div class="well well-sm">
+      Search for subjects you would like to comment on:
+    </div>
+    <!-- p>Search for subjects you would like to comment on:</p -->
+    <a href="#" class="btn btn-primary">Advanced Search</a>
+    <a aria-expanded="false" href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#">People</a></li>
+      <li><a href="#">Product</a></li>
+      <li><a href="#">Company</a></li>
+    </ul>
+  </div>
+
+</aside>
+
+
+<div class="col-md-8">
 <style>
   .bottom-three {
      margin-top: 0.9cm;
   }
 </style>
 
-<div class="btn-group bottom-three">
-<!-- p>Create new subjects you would like to comment on:</p -->
-<div class="well well-sm">
-  Create new subjects you would like to comment on:
-</div>
-  <a href="#" class="btn btn-primary">New Subject</a>
-  <a aria-expanded="false" href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-  <ul class="dropdown-menu">
-    <li><a href="../people_subjects/new">People</a></li>
-    <li><a href="#">Product</a></li>
-    <li><a href="#">Company</a></li>
-  </ul>
+<div class="row">
+  <div class="col-md-8">
+    <% if @people_subjects.any? %>
+      <h3>Subjects Created (<%= @people_subjects.count %>)</h3>
+      <ol class="microposts">
+        <%= render @people_subjects %>
+      </ol>
+      <%= will_paginate @people_subjects %>
+    <% end %>
+  </div>
 </div>
 
-<div class="btn-group bottom-three">
-<div class="well well-sm">
-  Search for subjects you would like to comment on:
-</div>
-<!-- p>Search for subjects you would like to comment on:</p -->
-  <a href="#" class="btn btn-primary">Advanced Search</a>
-  <a aria-expanded="false" href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-  <ul class="dropdown-menu">
-    <li><a href="#">People</a></li>
-    <li><a href="#">Product</a></li>
-    <li><a href="#">Company</a></li>
-  </ul>
 </div>
 
-    </section>
-  </aside>
+
+
+<div class="col-md-8">
+<style>
+  .bottom-three {
+     margin-top: 0.9cm;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-8">
+    <% if @people_comments.any? %>
+      <h3>Subjects Commented (<%= @people_comments.count %>)</h3>
+      <ol class="microposts">
+        <%= render @people_comments %>
+      </ol>
+      <%= will_paginate @people_comments %>
+    <% end %>
+  </div>
 </div>
+
+</div>
+
+

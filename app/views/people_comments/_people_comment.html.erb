@@ -1,8 +1,19 @@
-<li id="people_comment-<%= people_comment.id %>">
-  <span class="people_subject"><%= link_to people_comment.user.name, 
-  people_comment.user %></span>
-  <span class="content"><%= people_comment.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(people_comment.created_at) %> ago.
-  </span>
-</li>
+ <% if PeopleCommentsController.usernotsubject == true %>
+	<li id="people_comment-<%= people_comment.id %>">
+		<span class="people_comment"><%= link_to people_comment.people_subject.first_name + " " +people_comment.people_subject.last_name, 
+  			 people_comment.people_subject %></span>
+  		<span class="content"><%= people_comment.content %></span>
+  		<span class="timestamp">
+    		Posted <%= time_ago_in_words(people_comment.created_at) %> ago.
+  		</span>
+	</li>
+<% else %>
+	<li id="people_comment-<%= people_comment.id %>">
+  		<span class="people_subject"><%= link_to people_comment.user.name, 
+  			people_comment.user %></span>
+  		<span class="content"><%= people_comment.content %></span>
+  		<span class="timestamp">
+    		Posted <%= time_ago_in_words(people_comment.created_at) %> ago.
+  		</span>
+	</li>
+<% end %>

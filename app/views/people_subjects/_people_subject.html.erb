@@ -1,0 +1,7 @@
+<li id="people_subject-<%= people_subject.id %>">
+  <span class="people_subject"><%= link_to people_subject.first_name + " " + people_subject.last_name, 
+  people_subject %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(people_subject.created_at) %> ago.
+  </span>
+</li>
