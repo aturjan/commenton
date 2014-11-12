@@ -1,0 +1,22 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>External Link</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% subjects.each do |subject| %>
+			<tr>
+				<td><%= subject.first_name %></td>
+				<td><%= subject.last_name %></td>
+				<td><%= subject.external_link %></td>
+				<td><%= link_to subject do %>
+					<button type="button" class="btn btn-success small">Use this</button>
+				<% end %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

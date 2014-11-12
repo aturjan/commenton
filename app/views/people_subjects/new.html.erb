@@ -6,7 +6,7 @@
     <div class="well bs-component">
       <div class="form-horizontal">
 
-        <%= form_for(@subject) do |f| %>
+        <%= form_for(@subject, url: { action: "search" }) do |f| %>
           <fieldset>
 
           <legend>New People Subject</legend>
@@ -14,38 +14,63 @@
           <div class="form-group">
             <%-! %= render 'shared/error_messages' % %>
 
-            <%= f.label :first_name, class: "col-lg-4 control-label" %>
-             <div class="col-lg-7 ">
+            <%= f.label :first_name, "First Name", class: "col-lg-4 control-label" %>
+            <div class="col-lg-7 ">
               <%= f.text_field :first_name, class: "form-control", placeholder: "First Name", type: "text" %>
-             </div>
             </div>
-
-            <div class="form-group">
-            <%= f.label :last_name, class: "col-lg-4 control-label" %>
-              <div class="col-lg-7">
-                <%= f.text_field :last_name, class: 'form-control', placeholder: "Last Name", type: "text" %>
-              </div>
-            </div>
-
-            <div class="form-group">
-            <%= f.label :external_link, class: "col-lg-4 control-label" %>
-              <div class="col-lg-7">
-                <%= f.text_field :external_link, class: 'form-control', placeholder: "External Link", type: "text" %>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-lg-7 col-lg-offset-4">
-                <%= f.submit "Create my account", class: "btn btn-primary" %>     
-              </div>
-            </div>
-
           </div>
+
+          <div class="form-group">
+            <%= f.label :last_name, "Last Name", class: "col-lg-4 control-label" %>
+            <div class="col-lg-7">
+              <%= f.text_field :last_name, class: 'form-control', placeholder: "Last Name", type: "text" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :external_link, "Link", class: "col-lg-4 control-label" %>
+            <div class="col-lg-7">
+              <%= f.text_field :external_link, class: 'form-control', placeholder: "External Link", type: "text" %>
+            </div>
+          </div>
+
+          <div class="f.labelm-group">
+            <div class="col-lg-7 col-lg-offset-4">
+              <%= f.submit "Create my account", class: "btn btn-primary" %>     
+            </div>
+          </div>
+
           </fieldset>
         <% end %>
   
       </div>
     </div>
+  </div>
+  <div class="col-lg-8">
+    <% if @enforce_use_of_subject.nil? || @enforce_use_of_subject.empty? %>
+      <% unless  @subjects.nil? || @subjects.empty? %>
+        <%= render partial: "search_subjects", locals: { subjects: @subjects, purpose: :create } %>
+        <p>Not really in the list?
+          <%= form_for(@subject) do |f| %>
+            <%= f.hidden_field :first_name %>
+            <%= f.hidden_field :last_name %>
+            <%= f.hidden_field :external_link %>
+            <%= f.submit "Create Subject!", class: "btn btn-danger" %>
+          <% end %>
+        </p>
+      <% else %>
+        <p>Doesn't really exist any subject match in our database. Should we create it ? 
+          <%= form_for(@subject) do |f| %>
+            <%= f.hidden_field :first_name %>
+            <%= f.hidden_field :last_name %>
+            <%= f.hidden_field :external_link %>
+            <%= f.submit "Create Subject!", class: "btn btn-danger" %>
+          <% end %>
+      <% end %>
+    <% else %>
+      <%= render partial: "search_subjects", locals: { subjects: @enforce_use_of_subject, purpose: :create } %>
+      <p>External link already used by the presented user. Please use that subject to comment on.</p>
+    <% end %>
   </div>
 </div>
 </div>

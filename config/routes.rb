@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'people_subjects/new'
-
   get 'sessions/new'
 
   get 'signup' => 'users#new'
@@ -17,7 +15,11 @@ Rails.application.routes.draw do
 
   get    'new_people_subject'   => 'people_subject#new'
   resources :users
-  resources :people_subjects
+  resources :people_subjects do
+    collection do
+      post 'search'
+    end
+  end
   resources :people_comments, only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
